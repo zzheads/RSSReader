@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		120FB501BE966412D0790D4B /* Pods_RSSReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0916E8EEB303EA2AFA4D8D43 /* Pods_RSSReader.framework */; };
 		A616804D2214112B008A74C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616804C2214112B008A74C8 /* AppDelegate.swift */; };
-		A616804F2214112B008A74C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616804E2214112B008A74C8 /* ViewController.swift */; };
+		A616804F2214112B008A74C8 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616804E2214112B008A74C8 /* TableViewController.swift */; };
 		A61680522214112B008A74C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A61680502214112B008A74C8 /* Main.storyboard */; };
 		A61680542214112C008A74C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A61680532214112C008A74C8 /* Assets.xcassets */; };
 		A61680572214112C008A74C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A61680552214112C008A74C8 /* LaunchScreen.storyboard */; };
@@ -35,6 +35,13 @@
 		A616809D22144A9B008A74C8 /* Date +.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616809C22144A9B008A74C8 /* Date +.swift */; };
 		A616809F22144FCD008A74C8 /* RSSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A616809E22144FCD008A74C8 /* RSSLoader.swift */; };
 		A61680A12214570F008A74C8 /* RSSProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61680A02214570F008A74C8 /* RSSProvider.swift */; };
+		A6E731A32215838200F9A136 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731A22215838200F9A136 /* LoginViewController.swift */; };
+		A6E731A522158ABE00F9A136 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731A422158ABE00F9A136 /* Actions.swift */; };
+		A6E731A922158B7D00F9A136 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731A822158B7D00F9A136 /* Reducer.swift */; };
+		A6E731AB22158BB400F9A136 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731AA22158BB400F9A136 /* AppState.swift */; };
+		A6E731AE22158C6900F9A136 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731AD22158C6900F9A136 /* User.swift */; };
+		A6E731B6221610E400F9A136 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731B5221610E400F9A136 /* Route.swift */; };
+		A6E731B822161B5400F9A136 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731B722161B5400F9A136 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +50,7 @@
 		8F8EC6F53113A35A126940B1 /* Pods-RSSReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReader.release.xcconfig"; path = "Target Support Files/Pods-RSSReader/Pods-RSSReader.release.xcconfig"; sourceTree = "<group>"; };
 		A61680492214112B008A74C8 /* RSSReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A616804C2214112B008A74C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A616804E2214112B008A74C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A616804E2214112B008A74C8 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		A61680512214112B008A74C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A61680532214112C008A74C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A61680562214112C008A74C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,6 +77,13 @@
 		A616809C22144A9B008A74C8 /* Date +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date +.swift"; sourceTree = "<group>"; };
 		A616809E22144FCD008A74C8 /* RSSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSLoader.swift; sourceTree = "<group>"; };
 		A61680A02214570F008A74C8 /* RSSProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSProvider.swift; sourceTree = "<group>"; };
+		A6E731A22215838200F9A136 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A6E731A422158ABE00F9A136 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		A6E731A822158B7D00F9A136 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		A6E731AA22158BB400F9A136 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		A6E731AD22158C6900F9A136 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A6E731B5221610E400F9A136 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		A6E731B722161B5400F9A136 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +153,11 @@
 		A616807122143271008A74C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6E731AC22158C5700F9A136 /* User */,
+				A6E731A422158ABE00F9A136 /* Actions.swift */,
+				A6E731A822158B7D00F9A136 /* Reducer.swift */,
+				A6E731AA22158BB400F9A136 /* AppState.swift */,
+				A6E731B5221610E400F9A136 /* Route.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,9 +239,19 @@
 		A61680A42214B7C2008A74C8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A616804E2214112B008A74C8 /* ViewController.swift */,
+				A6E731A22215838200F9A136 /* LoginViewController.swift */,
+				A616804E2214112B008A74C8 /* TableViewController.swift */,
+				A6E731B722161B5400F9A136 /* DetailsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6E731AC22158C5700F9A136 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A6E731AD22158C6900F9A136 /* User.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		B6921D5247494D77113D6AF0 /* Pods */ = {
@@ -333,6 +362,7 @@
 				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReSwift/ReSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReSwiftRouter/ReSwiftRouter.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -343,6 +373,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReSwiftRouter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,18 +413,25 @@
 				A616809B22144874008A74C8 /* RSSFeedItemCell.swift in Sources */,
 				A61680A12214570F008A74C8 /* RSSProvider.swift in Sources */,
 				A616807E22143271008A74C8 /* ConfigurableCell.swift in Sources */,
+				A6E731B822161B5400F9A136 /* DetailsViewController.swift in Sources */,
+				A6E731AB22158BB400F9A136 /* AppState.swift in Sources */,
+				A6E731A922158B7D00F9A136 /* Reducer.swift in Sources */,
 				A6168099221444E4008A74C8 /* UIFont +.swift in Sources */,
 				A616807B22143271008A74C8 /* Section.swift in Sources */,
 				A616807F22143271008A74C8 /* Provider.swift in Sources */,
 				A616807C22143271008A74C8 /* Adapter.swift in Sources */,
 				A616809D22144A9B008A74C8 /* Date +.swift in Sources */,
+				A6E731B6221610E400F9A136 /* Route.swift in Sources */,
 				A616809F22144FCD008A74C8 /* RSSLoader.swift in Sources */,
-				A616804F2214112B008A74C8 /* ViewController.swift in Sources */,
+				A6E731A522158ABE00F9A136 /* Actions.swift in Sources */,
+				A616804F2214112B008A74C8 /* TableViewController.swift in Sources */,
 				A616807D22143271008A74C8 /* Row.swift in Sources */,
 				A616808022143271008A74C8 /* Loader.swift in Sources */,
+				A6E731A32215838200F9A136 /* LoginViewController.swift in Sources */,
 				A616804D2214112B008A74C8 /* AppDelegate.swift in Sources */,
 				A616808422144226008A74C8 /* Comparable +.swift in Sources */,
 				A616808122143271008A74C8 /* LoadingAdapter.swift in Sources */,
+				A6E731AE22158C6900F9A136 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,13 @@
 import UIKit
 import PromiseKit
 
+protocol DetailsProtocol {
+    func showDetails(item: TypeProtocol)
+}
+
 class LoadingAdapter<Loader: LoaderProtocol>: Adapter where Loader.ItemType == TypeProtocol {
     var provider: Provider<Loader>!
+    var delegate: DetailsProtocol?
     
     lazy var refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
@@ -21,7 +26,6 @@ class LoadingAdapter<Loader: LoaderProtocol>: Adapter where Loader.ItemType == T
     init(_ tableView: UITableView, loader: Loader) {
         super.init(tableView)
         self.provider = Provider(adapter: self, loader: loader)
-        self.tableView.delegate = self
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.refreshControl = self.refreshControl
     }
@@ -39,5 +43,6 @@ class LoadingAdapter<Loader: LoaderProtocol>: Adapter where Loader.ItemType == T
             }
     }
 }
+
 
 

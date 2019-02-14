@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DeA-Qb-zYI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,17 +9,110 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="CRC55.otf">
+            <string>Circe-Regular</string>
+        </array>
+        <array key="CRC65.otf">
+            <string>Circe-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
+        <scene sceneID="hxK-CG-1s4">
+            <objects>
+                <viewController id="fHl-z2-g7f" customClass="LoginViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ehl-iJ-TKF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSS Reader" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-qk-TeH">
+                                <rect key="frame" x="122.5" y="80" width="130" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="INo-Bs-wi0"/>
+                                    <constraint firstAttribute="height" constant="30" id="sIu-h8-9TJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="20"/>
+                                <color key="textColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EyF-yp-hef" userLabel="Tf Username">
+                                <rect key="frame" x="16" y="152" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="c7H-36-FkS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bu-ob-xHF">
+                                <rect key="frame" x="16" y="190" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FqY-3U-YIf"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xzs-8s-88g">
+                                <rect key="frame" x="16" y="236" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="rxg-hf-yhL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="16"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rsslogo" translatesAutoresizingMaskIntoConstraints="NO" id="52r-Ec-2ti">
+                                <rect key="frame" x="72.5" y="70" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="XpI-AM-EIh"/>
+                                    <constraint firstAttribute="height" constant="50" id="foq-dU-fgl"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87837939129999998" green="0.93666740920000002" blue="0.9854306115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="EyF-yp-hef" secondAttribute="trailing" constant="16" id="2WG-fq-Ob3"/>
+                            <constraint firstItem="lrz-qk-TeH" firstAttribute="centerY" secondItem="52r-Ec-2ti" secondAttribute="centerY" id="CKO-zg-tgC"/>
+                            <constraint firstItem="lrz-qk-TeH" firstAttribute="leading" secondItem="52r-Ec-2ti" secondAttribute="trailing" id="DGo-0U-5T3"/>
+                            <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="Xzs-8s-88g" secondAttribute="trailing" constant="16" id="JnL-IJ-NbQ"/>
+                            <constraint firstItem="lrz-qk-TeH" firstAttribute="centerX" secondItem="ehl-iJ-TKF" secondAttribute="centerX" id="LR8-VR-WAP"/>
+                            <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="9bu-ob-xHF" secondAttribute="trailing" constant="16" id="LYN-0b-Wie"/>
+                            <constraint firstItem="lrz-qk-TeH" firstAttribute="top" secondItem="lsK-wv-DaO" secondAttribute="top" constant="16" id="PzP-2X-7xQ"/>
+                            <constraint firstItem="EyF-yp-hef" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="ar7-rm-fVG"/>
+                            <constraint firstItem="9bu-ob-xHF" firstAttribute="top" secondItem="EyF-yp-hef" secondAttribute="bottom" constant="8" id="eSi-7A-KsC"/>
+                            <constraint firstItem="Xzs-8s-88g" firstAttribute="top" secondItem="9bu-ob-xHF" secondAttribute="bottom" constant="16" id="ehk-Sl-RWg"/>
+                            <constraint firstItem="Xzs-8s-88g" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="m6e-CW-WY0"/>
+                            <constraint firstItem="EyF-yp-hef" firstAttribute="top" secondItem="52r-Ec-2ti" secondAttribute="bottom" constant="32" id="qAH-h4-MBx"/>
+                            <constraint firstItem="9bu-ob-xHF" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="ulg-0w-bHO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lsK-wv-DaO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1RN-eI-nY5"/>
+                    <connections>
+                        <outlet property="btLogin" destination="Xzs-8s-88g" id="gI9-vq-68o"/>
+                        <outlet property="tfPassword" destination="9bu-ob-xHF" id="Znd-XQ-xhM"/>
+                        <outlet property="tfUsername" destination="EyF-yp-hef" id="nKx-LZ-NVu"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toTable" id="kLi-QI-FDv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gyi-WS-IQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2.3999999999999999" y="130.88455772113943"/>
+        </scene>
+        <!--Table View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GEy-jj-Kb4">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -32,13 +125,40 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="gNc-HG-UeO"/>
                     <connections>
                         <outlet property="tableView" destination="GEy-jj-Kb4" id="f6T-TB-3bT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="132.68365817091455"/>
+            <point key="canvasLocation" x="815" y="131"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6jg-Oj-byJ">
+            <objects>
+                <navigationController id="DeA-Qb-zYI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="znE-eq-vZ3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fHl-z2-g7f" kind="relationship" relationship="rootViewController" id="UdN-fJ-095"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HrE-nP-co3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-858" y="131"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="rsslogo" width="512" height="512"/>
+    </resources>
 </document>

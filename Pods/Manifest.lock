@@ -11,6 +11,8 @@ PODS:
   - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
   - ReSwift (4.0.1)
+  - ReSwiftRouter (0.6.0):
+    - ReSwift (~> 4.0.0)
   - SnapKit (4.2.0)
 
 DEPENDENCIES:
@@ -18,6 +20,7 @@ DEPENDENCIES:
   - FeedKit (~> 8.0)
   - PromiseKit (~> 6.8)
   - ReSwift
+  - ReSwiftRouter
   - SnapKit (~> 4.0)
 
 SPEC REPOS:
@@ -26,6 +29,7 @@ SPEC REPOS:
     - FeedKit
     - PromiseKit
     - ReSwift
+    - ReSwiftRouter
     - SnapKit
 
 SPEC CHECKSUMS:
@@ -33,8 +37,9 @@ SPEC CHECKSUMS:
   FeedKit: 4a78f07adf7f0a224b904014678f1de82a7ffc21
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
+  ReSwiftRouter: 81f41b37a5dd1c88e1d3d10a660ff2dcc939ba7c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: a20670c196a3e0b55f28838d72cb7054ffdc9f39
+PODFILE CHECKSUM: 3e4fcfbbdbb6e940f602f8de52079556efe58b97
 
 COCOAPODS: 1.6.0

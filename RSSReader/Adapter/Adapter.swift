@@ -21,6 +21,7 @@ protocol CellRegistrator {
 class Adapter: NSObject {
     weak var tableView: UITableView!
     var sections: [Section] = []
+    var selectDelegate: ((TypeProtocol) -> Void)?
     private var registeredCellIds: Set<String> = []
     var rows: [RowProtocol] {
         return self.sections.compactMap({ $0.rows }).reduce([], +)
@@ -38,9 +39,10 @@ class Adapter: NSObject {
         self.tableView = tableView
         super.init()
         self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
-    private func item(at indexPath: IndexPath) -> TypeProtocol {
+    func item(at indexPath: IndexPath) -> TypeProtocol {
         return self.sections[indexPath.section].rows[indexPath.row].item
     }
     
@@ -129,5 +131,9 @@ extension Adapter: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = self.item(at: indexPath).row
         return row.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectDelegate?(item(at: indexPath))
     }
 }

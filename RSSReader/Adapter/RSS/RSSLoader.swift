@@ -37,4 +37,18 @@ class RSSLoader: LoaderProtocol {
             }
         }
     }
+    
+    func getFeed() -> Promise<RSSFeed> {
+        return Promise<RSSFeed> { resolver in
+            self.parser.parseAsync(queue: DispatchQueue(label: "RSSDataFetch")) { result in
+                switch result {
+                case .rss(let rssFeed)      : resolver.fulfill(rssFeed)
+                case .failure(let error)    : resolver.reject(error)
+                default                     :
+                    let error = NSError(domain: "RSSReader", code: 405, userInfo: [NSLocalizedDescriptionKey: "RSSFeed is in incopatible format"])
+                    resolver.reject(error)
+                }
+            }
+        }
+    }
 }
