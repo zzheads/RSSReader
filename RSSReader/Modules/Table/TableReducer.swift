@@ -11,7 +11,7 @@ import FeedKit
 import SafariServices
 
 struct TableState {
-    var selectedItem: RSSFeedItem?
+    var selectedItem: RSSEntry?
     
     var detailsViewController: SFSafariViewController? {
         guard
@@ -29,7 +29,7 @@ struct TableState {
 }
 
 enum TableActions: Action {
-    case selectedItem(RSSFeedItem)
+    case selectedItem(RSSEntry)
     case detailsShown
 }
 

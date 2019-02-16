@@ -13,7 +13,7 @@ protocol RowProtocol {
     var cellId: String { get }
     var cellNib: UINib { get }
     var cellHeight: CGFloat { get }
-    func configure(cell: UITableViewCell)
+    func configure(cell: UITableViewCell, completion: @escaping (TypeProtocol) -> Void)
 }
 
 class Row<T: TypeProtocol, Cell: UITableViewCell & ConfigurableCell> where Cell.T == T {
@@ -42,10 +42,10 @@ extension Row: RowProtocol {
         return Cell.cellNib
     }
     
-    public func configure(cell: UITableViewCell) {
+    public func configure(cell: UITableViewCell, completion: @escaping (TypeProtocol) -> Void) {
         guard let cell = cell as? Cell else {
             return
         }
-        cell.configure(with: self.value)
+        cell.configure(with: self.value, completion: completion)
     }
 }

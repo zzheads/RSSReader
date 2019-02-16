@@ -13,11 +13,11 @@ class Section {
     lazy var headerView: UIView = {
         let label = UILabel()
         label.text = self.header
-        label.font = UIFont.bold18
-        label.textAlignment = .center
-        label.textColor = .darkGray
-        label.backgroundColor = .lightGray
-        label.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: UIScreen.main.bounds.width, height: 80))
+        label.font = UIFont.bold15
+        label.textAlignment = NSTextAlignment.center
+        label.textColor = UIColor(red: 0, green: 51/255, blue: 102/255, alpha: 0.5)
+        label.backgroundColor = .clear
+        label.sizeToFit()
         return label
     }()
     

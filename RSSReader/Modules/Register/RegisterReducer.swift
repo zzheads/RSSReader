@@ -7,6 +7,7 @@
 //
 
 import ReSwift
+import CoreData
 
 struct RegisterState: Codable {
     var registeredUsers: Set<User>
@@ -26,7 +27,8 @@ func registerReducer(_ action: Action, _ state: AppState) -> AppState {
         return state
     }
     switch action {
-    case let .register(username, password): state.register.registeredUsers.insert(User(username: username, password: password))
+    case let .register(username, password):
+        state.register.registeredUsers.insert(User(username: username, password: password, bookmarks: []))
     }
     return state
 }

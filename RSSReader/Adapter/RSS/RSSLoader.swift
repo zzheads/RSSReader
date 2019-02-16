@@ -27,9 +27,10 @@ class RSSLoader: LoaderProtocol {
                         resolver.reject(error)
                         return
                     }
-                    resolver.fulfill(rssFeedItems)
+                    resolver.fulfill(rssFeedItems.compactMap({ RSSEntry($0) }))
                     
                 case .failure(let error): resolver.reject(error)
+                    
                 default                 :
                     let error = NSError(domain: "RSSReader", code: 405, userInfo: [NSLocalizedDescriptionKey: "RSSFeed is in incopatible format"])
                     resolver.reject(error)
@@ -52,3 +53,5 @@ class RSSLoader: LoaderProtocol {
         }
     }
 }
+
+

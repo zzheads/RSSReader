@@ -11,23 +11,36 @@ import PromiseKit
 import ReSwift
 
 class LoginViewController: BaseViewController, StoreSubscriber {
-    @IBOutlet weak var tfUsername: UITextField!
-    @IBOutlet weak var tfPassword: UITextField!
-    @IBOutlet weak var btLogin: UIButton!
-    @IBOutlet weak var btRegister: UIButton!
+    @IBOutlet weak var containerView: UIView!
+    
+    let loginView = LoginView.nibInstance
+    let logoutView = LogoutView.nibInstance
+    
+    private func setLogged(isLogged: Bool) {
+        self.loginView.isHidden = isLogged
+        self.logoutView.isHidden = !isLogged
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = nil
-        self.btLogin.addTarget(self, action: #selector(loginDidPressed), for: .touchUpInside)
-        self.btRegister.addTarget(self, action: #selector(registerDidPressed), for: .touchUpInside)
+        self.containerView.addSubview(self.loginView)
+        self.containerView.addSubview(self.logoutView)
+        self.loginView.center = self.containerView.center
+        self.logoutView.center = self.containerView.center
+        self.loginView.btLogin.addTarget(self, action: #selector(loginDidPressed), for: .touchUpInside)
+        self.logoutView.btLogout.addTarget(self, action: #selector(logoutDidPressed), for: .touchUpInside)
+        self.loginView.btRegister.addTarget(self, action: #selector(registerDidPressed), for: .touchUpInside)
     }
     
     @objc func loginDidPressed(_ sender: UIButton) {
-        guard let username = tfUsername.text, let password = tfPassword.text else {
+        guard let username = self.loginView.tfUsername.text, let password = self.loginView.tfPassword.text else {
             return
         }
-        store.dispatch(LoginActions.login(User(username: username, password: password)))
+        store.dispatch(LoginActions.login(User(username: username, password: password, bookmarks: [])))
+    }
+    
+    @objc func logoutDidPressed(_ sender: UIButton) {
+        store.dispatch(LoginActions.logout)
     }
     
     @objc func registerDidPressed(_ sender: UIButton) {
@@ -45,11 +58,12 @@ class LoginViewController: BaseViewController, StoreSubscriber {
     }
 
     func newState(state: AppState) {
+        self.setLogged(isLogged: state.login.isLogged)
         guard let result = state.login.result else {
             return
         }
         switch result {
-        case .success(_)            : self.performSegue(withIdentifier: Route.toTable.rawValue, sender: self)
+        case let .success(user)     : self.logoutView.lbLogged.text = "Logged: \(user.username)"
         case let .failure(error)    :
             let ok = UIAlertAction(title: "OK", style: .default)
             let alert = UIAlertController(title: "Login error:", message: error, preferredStyle: .alert)

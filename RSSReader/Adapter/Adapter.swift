@@ -9,6 +9,7 @@
 import UIKit
 
 protocol TypeProtocol {
+    var sectionHeader: String { get }
     var sectionId: String { get }
     var rowId: String { get }
     var row: RowProtocol { get }
@@ -23,6 +24,12 @@ class Adapter: NSObject {
     var sections: [Section] = []
     var selectDelegate: ((TypeProtocol) -> Void)?
     private var registeredCellIds: Set<String> = []
+    var completion: (TypeProtocol) -> Void {
+        didSet {
+            self.tableView.reloadData() // TODO: maybe manual reassigning completions will be better
+        }
+    }
+    
     var rows: [RowProtocol] {
         return self.sections.compactMap({ $0.rows }).reduce([], +)
     }
@@ -35,8 +42,9 @@ class Adapter: NSObject {
         return IndexPath(row: self.sections[self.lastSectionIndex].lastRowIndex, section: self.lastSectionIndex)
     }
     
-    init(_ tableView: UITableView) {
+    init(_ tableView: UITableView, completion: @escaping (TypeProtocol) -> Void) {
         self.tableView = tableView
+        self.completion = completion
         super.init()
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -118,7 +126,7 @@ extension Adapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = self.sections[indexPath.section].rows[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: row.cellId, for: indexPath)
-        row.configure(cell: cell)
+        row.configure(cell: cell, completion: self.completion)
         return cell
     }
 }

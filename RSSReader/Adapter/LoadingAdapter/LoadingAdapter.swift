@@ -23,11 +23,20 @@ class LoadingAdapter<Loader: LoaderProtocol>: Adapter where Loader.ItemType == T
         return control
     }()
     
-    init(_ tableView: UITableView, loader: Loader) {
-        super.init(tableView)
+    init(_ tableView: UITableView, loader: Loader, completion: @escaping (TypeProtocol) -> Void) {
+        super.init(tableView, completion: completion)
         self.provider = Provider(adapter: self, loader: loader)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.refreshControl = self.refreshControl
+    }
+    
+    func fetch() -> Promise<[TypeProtocol]> {
+        return Promise<[TypeProtocol]> { resolver in
+            self.provider.fetchMore()
+                .done { newItems in resolver.fulfill(newItems) }
+                .catch { error in resolver.reject(error) }
+                .finally { self.refreshControl.endRefreshing() }
+        }
     }
     
     @objc func fetchMore() {
