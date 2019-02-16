@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Login View Controller-->
+        <!--Login-->
         <scene sceneID="hxK-CG-1s4">
             <objects>
                 <viewController id="fHl-z2-g7f" customClass="LoginViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,18 +26,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSS Reader" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrz-qk-TeH">
-                                <rect key="frame" x="122.5" y="80" width="130" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="INo-Bs-wi0"/>
-                                    <constraint firstAttribute="height" constant="30" id="sIu-h8-9TJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="20"/>
-                                <color key="textColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EyF-yp-hef" userLabel="Tf Username">
-                                <rect key="frame" x="16" y="152" width="343" height="30"/>
+                                <rect key="frame" x="16" y="96" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="c7H-36-FkS"/>
                                 </constraints>
@@ -46,7 +36,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bu-ob-xHF">
-                                <rect key="frame" x="16" y="190" width="343" height="30"/>
+                                <rect key="frame" x="16" y="134" width="343" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="FqY-3U-YIf"/>
                                 </constraints>
@@ -55,55 +45,143 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xzs-8s-88g">
-                                <rect key="frame" x="16" y="236" width="343" height="30"/>
+                                <rect key="frame" x="16" y="180" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rxg-hf-yhL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="16"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rsslogo" translatesAutoresizingMaskIntoConstraints="NO" id="52r-Ec-2ti">
-                                <rect key="frame" x="72.5" y="70" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dda-ao-9QA">
+                                <rect key="frame" x="16" y="218" width="343" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="XpI-AM-EIh"/>
-                                    <constraint firstAttribute="height" constant="50" id="foq-dU-fgl"/>
+                                    <constraint firstAttribute="height" constant="30" id="mcG-xD-Lpp"/>
                                 </constraints>
-                            </imageView>
+                                <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="16"/>
+                                <state key="normal" title="or Register">
+                                    <color key="titleColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.87837939129999998" green="0.93666740920000002" blue="0.9854306115" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.73308059739999998" green="0.80743221180000002" blue="0.85990977820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="EyF-yp-hef" secondAttribute="trailing" constant="16" id="2WG-fq-Ob3"/>
-                            <constraint firstItem="lrz-qk-TeH" firstAttribute="centerY" secondItem="52r-Ec-2ti" secondAttribute="centerY" id="CKO-zg-tgC"/>
-                            <constraint firstItem="lrz-qk-TeH" firstAttribute="leading" secondItem="52r-Ec-2ti" secondAttribute="trailing" id="DGo-0U-5T3"/>
+                            <constraint firstItem="EyF-yp-hef" firstAttribute="top" secondItem="lsK-wv-DaO" secondAttribute="top" constant="32" id="6bS-F3-eka"/>
                             <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="Xzs-8s-88g" secondAttribute="trailing" constant="16" id="JnL-IJ-NbQ"/>
-                            <constraint firstItem="lrz-qk-TeH" firstAttribute="centerX" secondItem="ehl-iJ-TKF" secondAttribute="centerX" id="LR8-VR-WAP"/>
                             <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="9bu-ob-xHF" secondAttribute="trailing" constant="16" id="LYN-0b-Wie"/>
-                            <constraint firstItem="lrz-qk-TeH" firstAttribute="top" secondItem="lsK-wv-DaO" secondAttribute="top" constant="16" id="PzP-2X-7xQ"/>
+                            <constraint firstItem="dda-ao-9QA" firstAttribute="top" secondItem="Xzs-8s-88g" secondAttribute="bottom" constant="8" id="MFQ-ez-LE4"/>
                             <constraint firstItem="EyF-yp-hef" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="ar7-rm-fVG"/>
+                            <constraint firstItem="lsK-wv-DaO" firstAttribute="trailing" secondItem="dda-ao-9QA" secondAttribute="trailing" constant="16" id="bl9-sP-ARP"/>
                             <constraint firstItem="9bu-ob-xHF" firstAttribute="top" secondItem="EyF-yp-hef" secondAttribute="bottom" constant="8" id="eSi-7A-KsC"/>
                             <constraint firstItem="Xzs-8s-88g" firstAttribute="top" secondItem="9bu-ob-xHF" secondAttribute="bottom" constant="16" id="ehk-Sl-RWg"/>
+                            <constraint firstItem="dda-ao-9QA" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="gBq-p8-V0z"/>
                             <constraint firstItem="Xzs-8s-88g" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="m6e-CW-WY0"/>
-                            <constraint firstItem="EyF-yp-hef" firstAttribute="top" secondItem="52r-Ec-2ti" secondAttribute="bottom" constant="32" id="qAH-h4-MBx"/>
                             <constraint firstItem="9bu-ob-xHF" firstAttribute="leading" secondItem="lsK-wv-DaO" secondAttribute="leading" constant="16" id="ulg-0w-bHO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lsK-wv-DaO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1RN-eI-nY5"/>
+                    <navigationItem key="navigationItem" title="Login" id="1RN-eI-nY5"/>
                     <connections>
                         <outlet property="btLogin" destination="Xzs-8s-88g" id="gI9-vq-68o"/>
+                        <outlet property="btRegister" destination="dda-ao-9QA" id="uEY-cd-pmE"/>
                         <outlet property="tfPassword" destination="9bu-ob-xHF" id="Znd-XQ-xhM"/>
                         <outlet property="tfUsername" destination="EyF-yp-hef" id="nKx-LZ-NVu"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toTable" id="kLi-QI-FDv"/>
+                        <segue destination="Vpb-5T-7K5" kind="show" identifier="toRegister" id="6Fy-cS-96i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gyi-WS-IQg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2.3999999999999999" y="130.88455772113943"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Register-->
+        <scene sceneID="KA3-bA-w54">
+            <objects>
+                <viewController id="Vpb-5T-7K5" customClass="RegisterViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dEI-31-xCd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Kl-n3-uVc" userLabel="Tf Username">
+                                <rect key="frame" x="16" y="96" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HAZ-sM-9KJ"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cta-Ez-OdP"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FHq-vc-AIv">
+                                <rect key="frame" x="16" y="134" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5Ba-2G-Jak"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="vcD-aj-Z6V"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Circe-Regular" family="Circe" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeR-8W-Fnt">
+                                <rect key="frame" x="16" y="180" width="343" height="30"/>
+                                <color key="backgroundColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="DUr-DU-5fx"/>
+                                    <constraint firstAttribute="height" constant="30" id="LfW-Wp-vv6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Circe-Bold" family="Circe" pointSize="16"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.73308059739999998" green="0.80743221180000002" blue="0.85990977820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Kl-n3-uVc" firstAttribute="top" secondItem="rhD-zR-15x" secondAttribute="top" constant="32" id="7pI-ZE-TX2"/>
+                            <constraint firstItem="rhD-zR-15x" firstAttribute="trailing" secondItem="5Kl-n3-uVc" secondAttribute="trailing" constant="16" id="DUQ-yH-j5W"/>
+                            <constraint firstItem="rhD-zR-15x" firstAttribute="trailing" secondItem="yeR-8W-Fnt" secondAttribute="trailing" constant="16" id="MH8-jb-ojL"/>
+                            <constraint firstItem="yeR-8W-Fnt" firstAttribute="leading" secondItem="rhD-zR-15x" secondAttribute="leading" constant="16" id="OyD-Z8-fJG"/>
+                            <constraint firstItem="yeR-8W-Fnt" firstAttribute="top" secondItem="FHq-vc-AIv" secondAttribute="bottom" constant="16" id="YJ9-ZF-aQ3"/>
+                            <constraint firstItem="FHq-vc-AIv" firstAttribute="top" secondItem="5Kl-n3-uVc" secondAttribute="bottom" constant="8" id="aey-w7-tiA"/>
+                            <constraint firstItem="yeR-8W-Fnt" firstAttribute="top" secondItem="FHq-vc-AIv" secondAttribute="bottom" constant="16" id="pS7-r3-bnn"/>
+                            <constraint firstItem="rhD-zR-15x" firstAttribute="trailing" secondItem="FHq-vc-AIv" secondAttribute="trailing" constant="16" id="qLZ-QS-Hb0"/>
+                            <constraint firstItem="FHq-vc-AIv" firstAttribute="top" secondItem="5Kl-n3-uVc" secondAttribute="bottom" constant="8" id="rwu-Jk-3ZV"/>
+                            <constraint firstItem="5Kl-n3-uVc" firstAttribute="leading" secondItem="rhD-zR-15x" secondAttribute="leading" constant="16" id="sEy-YJ-3Wz"/>
+                            <constraint firstItem="FHq-vc-AIv" firstAttribute="leading" secondItem="rhD-zR-15x" secondAttribute="leading" constant="16" id="vfb-Zk-pqN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rhD-zR-15x"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Register" leftItemsSupplementBackButton="YES" id="Szc-3i-MON">
+                        <barButtonItem key="backBarButtonItem" title=" " id="vhV-wR-Gee"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="btRegister" destination="yeR-8W-Fnt" id="enI-nd-e11"/>
+                        <outlet property="tfPassword" destination="FHq-vc-AIv" id="zRG-ox-2jB"/>
+                        <outlet property="tfUsername" destination="5Kl-n3-uVc" id="tWg-8b-yp7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yBy-1S-yYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2" y="889"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vJJ-NT-Mg8">
+            <objects>
+                <tabBarController id="o6k-XE-ldT" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Dqk-wC-4IS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NSr-qT-dno" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-634" y="131"/>
+        </scene>
+        <!--RSS Feed-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TableViewController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -125,7 +203,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="gNc-HG-UeO"/>
+                    <navigationItem key="navigationItem" title="RSS Feed" leftItemsSupplementBackButton="YES" id="gNc-HG-UeO">
+                        <barButtonItem key="backBarButtonItem" title=" " id="hv7-bE-afW"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="GEy-jj-Kb4" id="f6T-TB-3bT"/>
                     </connections>
@@ -137,7 +217,7 @@
         <!--Navigation Controller-->
         <scene sceneID="6jg-Oj-byJ">
             <objects>
-                <navigationController id="DeA-Qb-zYI" sceneMemberID="viewController">
+                <navigationController id="DeA-Qb-zYI" customClass="NavigationController" customModule="RSSReader" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="znE-eq-vZ3">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -155,10 +235,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HrE-nP-co3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-858" y="131"/>
+            <point key="canvasLocation" x="-1262" y="131"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="rsslogo" width="512" height="512"/>
-    </resources>
 </document>

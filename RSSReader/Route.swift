@@ -11,4 +11,5 @@ import Foundation
 enum Route: String {
     case toTable
     case toDetails
+    case toRegister
 }

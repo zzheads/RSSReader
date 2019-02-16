@@ -10,7 +10,7 @@ import UIKit
 import FeedKit
 import ReSwift
 
-class TableViewController: UIViewController, StoreSubscriber {
+class TableViewController: BaseViewController, StoreSubscriber {
     @IBOutlet weak var tableView: UITableView!
     let loader = RSSLoader(url: URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!)
     lazy var adapter: LoadingAdapter<RSSLoader> = {
@@ -22,12 +22,9 @@ class TableViewController: UIViewController, StoreSubscriber {
         super.viewDidLoad()
         self.loader.getFeed().done { rssFeed in self.title = rssFeed.description }.cauterize()
         self.adapter.fetchMore()
-        self.navigationItem.hidesBackButton = true
-        let leftButton = UIBarButtonItem(title: "Logout", style: UIBarButtonItem.Style.done, target: self, action: #selector(leftButtonPressed(_:)))
-        leftButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold14], for: .normal)
-        leftButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.bold14], for: .highlighted)
-        self.navigationItem.setLeftBarButton(leftButton, animated: true)
         self.adapter.selectDelegate = self.showDetails
+        self.navigationItem.leftBarButtonItem?.title = "Logout"
+        self.navigationItem.leftBarButtonItem?.action = #selector(leftButtonPressed(_:))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,8 +46,7 @@ class TableViewController: UIViewController, StoreSubscriber {
         guard let detailsViewController = state.table.detailsViewController else {
             return
         }
-        self.navigationController?.pushViewController(detailsViewController, animated: true)
-        store.dispatch(TableActions.detailsShown)
+        self.present(detailsViewController, animated: true) { store.dispatch(TableActions.detailsShown) }
     }
 
     func showDetails(_ item: TypeProtocol) {
