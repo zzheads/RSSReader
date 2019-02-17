@@ -742,15 +742,13 @@
 		A616804B2214112B008A74C8 /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
-				A616808222144215008A74C8 /* Helpers */,
 				A616804C2214112B008A74C8 /* AppDelegate.swift */,
-				A6E731B5221610E400F9A136 /* Route.swift */,
 				A6B592C52217C01000D3585B /* Modules */,
-				A605CC902216C9DD008FBEA1 /* UserDefaults */,
-				A61680852214426F008A74C8 /* Views */,
 				A616807122143271008A74C8 /* Model */,
+				A61680852214426F008A74C8 /* Views */,
 				A61680632214275D008A74C8 /* Resources */,
 				A616806222142731008A74C8 /* SupportingFiles */,
+				A616808222144215008A74C8 /* Helpers */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -781,6 +779,7 @@
 		A616807122143271008A74C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A6F9669E2219FE320006477C /* DataSources */,
 				A6B592F822180E2300D3585B /* CoreStack */,
 				A6E731AC22158C5700F9A136 /* User */,
 				A6B592FB2218148C00D3585B /* RSSEntry */,
@@ -791,6 +790,7 @@
 		A616808222144215008A74C8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A605CC902216C9DD008FBEA1 /* UserDefaults */,
 				A616808322144226008A74C8 /* Comparable +.swift */,
 				A6168098221444E4008A74C8 /* UIFont +.swift */,
 				A616809C22144A9B008A74C8 /* Date +.swift */,
@@ -833,6 +833,7 @@
 		A6B592C52217C01000D3585B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				A6E731B5221610E400F9A136 /* Route.swift */,
 				A6B592CF2217D77800D3585B /* RootReducer.swift */,
 				A6B595612218857C00D3585B /* Bookmarks */,
 				A6B592CC2217D70700D3585B /* Table */,
@@ -865,9 +866,6 @@
 			children = (
 				A616804E2214112B008A74C8 /* TableViewController.swift */,
 				A6B592CD2217D71E00D3585B /* TableReducer.swift */,
-				A6F966952219D1BB0006477C /* RSSLoader.swift */,
-				A6F9669A2219E6440006477C /* FetchedResultsDataSource.swift */,
-				A6F9669C2219EADD0006477C /* RSSLoaderDataSource.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
@@ -1229,6 +1227,16 @@
 				A6F96691221976CE0006477C /* User +.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		A6F9669E2219FE320006477C /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				A6F966952219D1BB0006477C /* RSSLoader.swift */,
+				A6F9669A2219E6440006477C /* FetchedResultsDataSource.swift */,
+				A6F9669C2219EADD0006477C /* RSSLoaderDataSource.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		B6921D5247494D77113D6AF0 /* Pods */ = {
