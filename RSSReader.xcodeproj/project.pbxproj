@@ -349,6 +349,7 @@
 		A6F966962219D1BB0006477C /* RSSLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F966952219D1BB0006477C /* RSSLoader.swift */; };
 		A6F9669B2219E6440006477C /* FetchedResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9669A2219E6440006477C /* FetchedResultsDataSource.swift */; };
 		A6F9669D2219EADD0006477C /* RSSLoaderDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9669C2219EADD0006477C /* RSSLoaderDataSource.swift */; };
+		A6F966A0221A09420006477C /* AppIcon.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6F9669F221A09420006477C /* AppIcon.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -698,6 +699,7 @@
 		A6F966952219D1BB0006477C /* RSSLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSLoader.swift; sourceTree = "<group>"; };
 		A6F9669A2219E6440006477C /* FetchedResultsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsDataSource.swift; sourceTree = "<group>"; };
 		A6F9669C2219EADD0006477C /* RSSLoaderDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSLoaderDataSource.swift; sourceTree = "<group>"; };
+		A6F9669F221A09420006477C /* AppIcon.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcon.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -772,6 +774,7 @@
 				A61680502214112B008A74C8 /* Main.storyboard */,
 				A61680552214112C008A74C8 /* LaunchScreen.storyboard */,
 				A61680532214112C008A74C8 /* Assets.xcassets */,
+				A6F9669F221A09420006477C /* AppIcon.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1516,6 +1519,7 @@
 				A6B594C32218759B00D3585B /* multiple.png in Resources */,
 				A6B5952B2218759B00D3585B /* write.png in Resources */,
 				A6B594E52218759B00D3585B /* fire-torch.png in Resources */,
+				A6F966A0221A09420006477C /* AppIcon.xcassets in Resources */,
 				A6B594C92218759B00D3585B /* screwdriver.png in Resources */,
 				A6B594452218759B00D3585B /* medical-sign.png in Resources */,
 				A6B595412218759B00D3585B /* table-lamp.png in Resources */,

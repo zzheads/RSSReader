@@ -17,7 +17,6 @@ enum RegisterActions: Action {
 }
 
 func registerReducer(_ action: Action, _ state: AppState) -> AppState {
-    var state = state
     guard let action = action as? RegisterActions else {
         return state
     }

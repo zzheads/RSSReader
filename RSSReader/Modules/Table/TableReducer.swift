@@ -44,8 +44,8 @@ func tableReducer(_ action: Action, _ state: AppState) -> AppState {
     case .selectedItem(let item)    : state.table.selectedItem = item
     case .detailsShown              : state.table.selectedItem = nil
     case .bookmarkedItem(let item)  :
-        state.login.loggedUser?.handleBookmark(item)
-        state.table.bookmarks.handleBookmark(item)
+        _ = state.login.loggedUser?.handleBookmark(item)
+        _ = state.table.bookmarks.handleBookmark(item)
     }
     return state
 }
