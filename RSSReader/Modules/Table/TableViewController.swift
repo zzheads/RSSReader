@@ -39,9 +39,7 @@ class TableViewController: BaseViewController, StoreSubscriber {
                 guard let entries = entries as? [RSSEntry] else {
                     return
                 }
-                entries.insertOrUpdateObjects()
-                    .done { objects in print(objects) }
-                    .catch { error in print(error) }
+                print(entries)
             }
             .catch { [weak self] error in
                 guard let sSelf = self else {
@@ -74,9 +72,9 @@ class TableViewController: BaseViewController, StoreSubscriber {
     }
     
     private func bookmark(_ entry: RSSEntry, for user: User) {
-        user.bookmarks.insert(entry.id)
-        user.updateObject()
-        print("Entry with id=\(entry.id) bookmarked")
+        user.addToBookmarks(entry)
+        try! CoreStack.shared.persistentContainer.viewContext.save()
+        print("Entry \(entry.title) bookmarked")
     }
     
     func newState(state: AppState) {

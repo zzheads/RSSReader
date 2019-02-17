@@ -6,76 +6,34 @@
 //  Copyright © 2019 Artec. All rights reserved.
 //
 
-import Foundation
+import CoreData
 import ReSwift
 
-struct LoginState: Codable {
-    enum LoginResult: Codable {
-        case success(User)
-        case failure(String)
-        
-        enum CodingKeys: String, CodingKey {
-            case success
-            case failure
-        }
-        
-        enum LoginResultCodingError: Error {
-            case decoding(String)
-        }
-        
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            let user = try? container.decode(User.self, forKey: .success)
-            let error = try? container.decode(String.self, forKey: .failure)
-            if let user = user {
-                self = .success(user)
-                return
-            }
-            if let error = error {
-                self = .failure(error)
-                return
-            }
-            throw LoginResultCodingError.decoding("Error decoding LoginResult: \(dump(container))")
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            switch self {
-            case let .success(user)     : try container.encode(user, forKey: .success)
-            case let .failure(error)    : try container.encode(error, forKey: .failure)
-            }
-        }
+struct LoginState {
+    var loggedUser: User?
+    var error: String?
+    
+    init(loggedUser: User? = nil, error: String? = nil) {
+        self.loggedUser = loggedUser
+        self.error = error
     }
     
-    var result: LoginResult?
-    
-    var loggedUser: User? {
-        guard let result = self.result else {
-            return nil
-        }
-        switch result {
-        case let .success(user) : return user
-        case .failure(_)        : return nil
+    init?(username: String) {
+        let context = CoreStack.shared.persistentContainer.viewContext
+        let request = NSFetchRequest<User>(entityName: User.entity().name!)
+        request.predicate = NSPredicate(format: "username = %@", username)
+        if let user = try? context.fetch(request).first {
+            self.loggedUser = user
         }
     }
     
     var isLogged: Bool {
         return self.loggedUser != nil
     }
-    
-    var error: String? {
-        guard let result = self.result else {
-            return nil
-        }
-        switch result {
-        case let .failure(error): return error
-        default                 : return nil
-        }
-    }
 }
 
 enum LoginActions: Action {
-    case login(User)
+    case login(username: String, password: String)
     case logout
 }
 
@@ -85,8 +43,17 @@ func loginReducer(_ action: Action, _ state: AppState) -> AppState {
         return state
     }
     switch action {
-    case let .login(user)   : state.login.result = state.register.validate(user)
-    case .logout            : state.login.result = nil
+    case let .login(username, password)     :
+        let users = try! CoreStack.shared.persistentContainer.viewContext.fetch(User.fetchRequest()) as! [User]
+        guard let user = users.first(where: { $0.username == username && $0.password == password }) else {
+            state.login.error = "Invalid username or/and password"
+            break
+        }
+        state.login.loggedUser = user
+        
+    case .logout            :
+        state.login.loggedUser = nil
+        state.login.error = nil
     }
     return state
 }

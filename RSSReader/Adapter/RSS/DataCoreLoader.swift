@@ -12,9 +12,14 @@ import PromiseKit
 class CoreDataLoader: LoaderProtocol {
     func fetch(offset: Int, count: Int) -> Promise<[TypeProtocol]> {
         return Promise<[TypeProtocol]> { resolver in
-            RSSEntry.fetch()
-                .done { entries in resolver.fulfill(entries) }
-                .catch { error in resolver.reject(error) }
+            do {
+                let request = NSFetchRequest<RSSEntry>(entityName: RSSEntry.entity().name!)
+                let context = CoreStack.shared.persistentContainer.viewContext
+                let entries = try context.fetch(request)
+                resolver.fulfill(entries)
+            } catch {
+                resolver.reject(error)
+            }
         }
     }
 }

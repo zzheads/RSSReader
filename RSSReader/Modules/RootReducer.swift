@@ -11,18 +11,17 @@ import ReSwift
 struct AppState: StateType {
     var login       : LoginState = LoginState()
     var table       : TableState = TableState()
-    var register    : RegisterState = RegisterState(registeredUsers: [])
+    var register    : RegisterState = RegisterState()
     
     func save() {
         UserDefaults.default.loginState = self.login
-        UserDefaults.default.registerState = self.register
     }
     
     static var restored: AppState {
         let state = AppState(
             login: UserDefaults.default.loginState ?? LoginState(),
             table: TableState(),
-            register: UserDefaults.default.registerState ?? RegisterState(registeredUsers: [])
+            register: RegisterState()
         )
         return state
     }

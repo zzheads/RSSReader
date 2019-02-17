@@ -10,11 +10,6 @@ import ReSwift
 import CoreData
 
 struct RegisterState: Codable {
-    var registeredUsers: Set<User>
-    
-    func validate(_ user: User) -> LoginState.LoginResult {
-        return self.registeredUsers.contains(where: { $0.username == user.username && $0.password == user.password }) ? .success(user) : .failure("Incorrect username or/and password")
-    }
 }
 
 enum RegisterActions: Action {
@@ -28,7 +23,10 @@ func registerReducer(_ action: Action, _ state: AppState) -> AppState {
     }
     switch action {
     case let .register(username, password):
-        state.register.registeredUsers.insert(User(username: username, password: password, bookmarks: []))
+        let user = User(context: CoreStack.shared.persistentContainer.viewContext)
+        user.username = username
+        user.password = password
+        try! CoreStack.shared.persistentContainer.viewContext.save()
     }
     return state
 }

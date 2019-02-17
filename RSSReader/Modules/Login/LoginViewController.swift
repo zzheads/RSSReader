@@ -36,7 +36,7 @@ class LoginViewController: BaseViewController, StoreSubscriber {
         guard let username = self.loginView.tfUsername.text, let password = self.loginView.tfPassword.text else {
             return
         }
-        store.dispatch(LoginActions.login(User(username: username, password: password, bookmarks: [])))
+        store.dispatch(LoginActions.login(username: username, password: password))
     }
     
     @objc func logoutDidPressed(_ sender: UIButton) {
@@ -57,18 +57,22 @@ class LoginViewController: BaseViewController, StoreSubscriber {
         store.unsubscribe(self)
     }
 
+    private func showError(error: String) {
+        let ok = UIAlertAction(title: "OK", style: .default)
+        let alert = UIAlertController(title: "Login error:", message: error, preferredStyle: .alert)
+        alert.addAction(ok)
+        self.present(alert, animated: true) { store.dispatch(LoginActions.logout) }
+    }
+    
     func newState(state: AppState) {
         self.setLogged(isLogged: state.login.isLogged)
-        guard let result = state.login.result else {
-            return
-        }
-        switch result {
-        case let .success(user)     : self.logoutView.lbLogged.text = "Logged: \(user.username)"
-        case let .failure(error)    :
-            let ok = UIAlertAction(title: "OK", style: .default)
-            let alert = UIAlertController(title: "Login error:", message: error, preferredStyle: .alert)
-            alert.addAction(ok)
-            self.present(alert, animated: true) { store.dispatch(LoginActions.logout) }
+        switch state.login.loggedUser {
+        case .none              :
+            guard let error = state.login.error else {
+                break
+            }
+            showError(error: error)
+        case .some(let user)    : self.logoutView.lbLogged.text = "Logged: \(user.username ?? "")"
         }
     }
 }

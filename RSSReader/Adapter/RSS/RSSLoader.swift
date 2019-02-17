@@ -9,6 +9,7 @@
 import UIKit
 import FeedKit
 import PromiseKit
+import CoreData
 
 class RSSLoader: LoaderProtocol {
     let parser: FeedParser
@@ -27,7 +28,22 @@ class RSSLoader: LoaderProtocol {
                         resolver.reject(error)
                         return
                     }
-                    resolver.fulfill(rssFeedItems.compactMap({ RSSEntry($0) }))
+                    do {
+                        let context = CoreStack.shared.persistentContainer.viewContext
+                        let request = NSFetchRequest<RSSEntry>(entityName: RSSEntry.entity().name!)
+                        var entries = try context.fetch(request)
+                        for item in rssFeedItems {
+                            if !entries.contains(where: { $0.title == item.title }) {
+                                let newEntry = RSSEntry(context: context)
+                                newEntry.update(with: item)
+                                entries.append(newEntry)
+                            }
+                        }
+                        try context.save()
+                        resolver.fulfill(entries)
+                    } catch {
+                        resolver.reject(error)
+                    }
                     
                 case .failure(let error): resolver.reject(error)
                     

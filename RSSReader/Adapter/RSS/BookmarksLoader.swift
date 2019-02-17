@@ -7,6 +7,7 @@
 //
 
 import PromiseKit
+import CoreData
 
 class BookmarksLoader: LoaderProtocol {
     var loggedUser: User
@@ -17,14 +18,12 @@ class BookmarksLoader: LoaderProtocol {
     
     func fetch(offset: Int, count: Int) -> Promise<[TypeProtocol]> {
         return Promise<[TypeProtocol]> { resolver in
-            RSSEntry.fetch()
-                .done { entries in
-                    let bookmarks = entries.filter({ self.loggedUser.bookmarks.contains($0.id) })
-                    resolver.fulfill(bookmarks)
-                }
-                .catch { error in
-                    resolver.reject(error)
-                }
+            guard let bookmarks = self.loggedUser.bookmarks as? Set<RSSEntry> else {
+                let error = NSError(domain: "RSSReader", code: 403, userInfo: [NSLocalizedDescriptionKey: "Cant read bookmarks of \(self.loggedUser)"])
+                resolver.reject(error)
+                return
+            }
+            resolver.fulfill(Array(bookmarks))
         }
     }
 }
