@@ -44,7 +44,6 @@ class FetchedResultsDataSource: NSObject, NSFetchedResultsControllerDelegate, UI
     }
     
     private func bookmark(_ entry: RSSEntry) -> Bool {
-        print("Configured for \(loggedUser?.username ?? "nil")")
         store.dispatch(TableActions.bookmarkedItem(entry))
         return loggedUser?.bookmarkState(entry) ?? false
     }

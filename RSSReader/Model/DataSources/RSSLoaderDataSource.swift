@@ -23,20 +23,22 @@ class RSSLoaderDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
                         resolver.reject(error)
                         return
                     }
-                    let context = CoreStack.shared.persistentContainer.viewContext
-                    let controller = FetchedResultsDataSource().fetchedEntriesController
-                    try controller.performFetch()
-                    self.entries = controller.fetchedObjects ?? []
-                    let newItems = items.filter({ (item) -> Bool in
-                        !self.entries.contains(where: { item.title == $0.title })
-                    })
-                    for item in newItems {
-                        let entry = RSSEntry(context: context)
-                        entry.update(with: item)
-                        self.entries.append(entry)
+                    DispatchQueue(label: "CoreData queue").async {
+                        let context = CoreStack.shared.persistentContainer.viewContext
+                        let controller = FetchedResultsDataSource().fetchedEntriesController
+                        try? controller.performFetch()
+                        self.entries = controller.fetchedObjects ?? []
+                        let newItems = items.filter({ (item) -> Bool in
+                            !self.entries.contains(where: { item.title == $0.title })
+                        })
+                        for item in newItems {
+                            let entry = RSSEntry(context: context)
+                            entry.update(with: item)
+                            self.entries.append(entry)
+                        }
+                        self.entries.sort(by: { $0.pubDate?.compare($1.pubDate ?? Date()) == .orderedAscending })
+                        resolver.fulfill(self.entries)
                     }
-                    self.entries.sort(by: { $0.pubDate?.compare($1.pubDate ?? Date()) == .orderedAscending })
-                    resolver.fulfill(self.entries)
                 }
                 .catch { error in
                     resolver.reject(error)
@@ -56,13 +58,11 @@ class RSSLoaderDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSEntryCell.reuseIdentifier, for: indexPath) as! RSSEntryCell
         let entry = self.entries[indexPath.row]
         let bookmarkState: Bool = self.loggedUser?.bookmarkState(entry) ?? false
-        print("BookmarkState = \(bookmarkState)")
         cell.configure(with: self.entries[indexPath.row], isBookmarked: bookmarkState) { return self.bookmark($0) }
         return cell
     }
         
     private func bookmark(_ entry: RSSEntry) -> Bool {
-        print("Configured for \(loggedUser?.username ?? "nil")")
         store.dispatch(TableActions.bookmarkedItem(entry))
         return self.loggedUser?.bookmarkState(entry) ?? false
     }

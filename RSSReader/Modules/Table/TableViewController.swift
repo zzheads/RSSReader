@@ -21,6 +21,15 @@ class TableViewController: BaseViewController, StoreSubscriber {
     }
     var updateBookmarksCount: ((Int) -> Void)?
     
+    lazy var refreshControl: UIRefreshControl = {
+        let control = UIRefreshControl()
+        control.attributedTitle = NSAttributedString(string: "Fetching RSSFeed...")
+        control.tintColor = UIColor(red: 33/255, green: 80/255, blue: 113/255, alpha: 1.0)
+        self.tableView.refreshControl = control
+        control.addTarget(self, action: #selector(self.fetch), for: .valueChanged)
+        return control
+    }()
+    
     var rssLoaderDataSource = RSSLoaderDataSource()
     var fetchedDataSource = FetchedResultsDataSource()
     
@@ -30,7 +39,7 @@ class TableViewController: BaseViewController, StoreSubscriber {
         self.tableView.register(RSSEntryCell.nibName, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
     }
         
-    private func fetch() {
+    @objc private func fetch() {
         self.tableView.dataSource = self.rssLoaderDataSource
         self.tableView.delegate = self.rssLoaderDataSource
         self.rssLoaderDataSource.performFetch()
@@ -48,6 +57,9 @@ class TableViewController: BaseViewController, StoreSubscriber {
                 } catch {
                     print(error)
                 }
+            }
+            .finally {
+                self.refreshControl.endRefreshing()
             }
     }
         
