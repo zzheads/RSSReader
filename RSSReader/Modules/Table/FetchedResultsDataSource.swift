@@ -37,11 +37,14 @@ class FetchedResultsDataSource: NSObject, NSFetchedResultsControllerDelegate, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSEntryCell.reuseIdentifier, for: indexPath) as! RSSEntryCell
-        cell.configure(with: self.entries[indexPath.row]) { return self.bookmark($0) }
+        let entry = self.entries[indexPath.row]
+        let bookmarkState = self.loggedUser?.bookmarkState(entry) ?? false
+        cell.configure(with: entry, isBookmarked: bookmarkState) { return self.bookmark($0) }
         return cell
     }
     
     private func bookmark(_ entry: RSSEntry) -> Bool {
+        print("Configured for \(loggedUser?.username ?? "nil")")
         store.dispatch(TableActions.bookmarkedItem(entry))
         return loggedUser?.bookmarkState(entry) ?? false
     }

@@ -29,7 +29,7 @@ class TableViewController: BaseViewController, StoreSubscriber {
         store.subscribe(self)
         self.tableView.register(RSSEntryCell.nibName, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
     }
-    
+        
     private func fetch() {
         self.tableView.dataSource = self.rssLoaderDataSource
         self.tableView.delegate = self.rssLoaderDataSource
@@ -50,7 +50,7 @@ class TableViewController: BaseViewController, StoreSubscriber {
                 }
             }
     }
-    
+        
     func newState(state: AppState) {
         if let detailsViewController = state.table.detailsViewController {
             self.present(detailsViewController, animated: true) { store.dispatch(TableActions.detailsShown) }

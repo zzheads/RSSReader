@@ -30,3 +30,4 @@ extension Set where Element == RSSEntry {
         return self.contains(entry)
     }
 }
+

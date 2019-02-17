@@ -29,6 +29,6 @@ extension User {
         guard let bookmarks = self.bookmarks as? Set<RSSEntry> else {
             return false
         }
-        return bookmarks.contains(entry)
+        return bookmarks.contains(where: { entry.title == $0.title })
     }
 }

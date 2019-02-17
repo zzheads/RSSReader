@@ -24,12 +24,18 @@ class RSSLoaderDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
                         return
                     }
                     let context = CoreStack.shared.persistentContainer.viewContext
-                    self.entries.removeAll()
-                    for item in items {
+                    let controller = FetchedResultsDataSource().fetchedEntriesController
+                    try controller.performFetch()
+                    self.entries = controller.fetchedObjects ?? []
+                    let newItems = items.filter({ (item) -> Bool in
+                        !self.entries.contains(where: { item.title == $0.title })
+                    })
+                    for item in newItems {
                         let entry = RSSEntry(context: context)
                         entry.update(with: item)
                         self.entries.append(entry)
                     }
+                    self.entries.sort(by: { $0.pubDate?.compare($1.pubDate ?? Date()) == .orderedAscending })
                     resolver.fulfill(self.entries)
                 }
                 .catch { error in
@@ -48,11 +54,15 @@ class RSSLoaderDataSource: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSEntryCell.reuseIdentifier, for: indexPath) as! RSSEntryCell
-        cell.configure(with: self.entries[indexPath.row]) { return self.bookmark($0) }
+        let entry = self.entries[indexPath.row]
+        let bookmarkState: Bool = self.loggedUser?.bookmarkState(entry) ?? false
+        print("BookmarkState = \(bookmarkState)")
+        cell.configure(with: self.entries[indexPath.row], isBookmarked: bookmarkState) { return self.bookmark($0) }
         return cell
     }
         
     private func bookmark(_ entry: RSSEntry) -> Bool {
+        print("Configured for \(loggedUser?.username ?? "nil")")
         store.dispatch(TableActions.bookmarkedItem(entry))
         return self.loggedUser?.bookmarkState(entry) ?? false
     }

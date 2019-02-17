@@ -56,7 +56,7 @@ extension RSSEntryCell {
         return 172
     }
     
-    func configure(with item: RSSEntry, completion: @escaping (RSSEntry) -> Bool) {
+    func configure(with item: RSSEntry, isBookmarked: Bool, completion: @escaping (RSSEntry) -> Bool) {
         self.entry = item
         self.completion = completion
         self.titleLabel.text = item.title
@@ -67,10 +67,7 @@ extension RSSEntryCell {
         } else {
             self.dateLabel.text = ""
         }
-
-        _ = completion(item)
-        let startState = completion(item)
-        self.setFavoriteButton(startState)
+        self.setFavoriteButton(isBookmarked)
         self.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: .touchUpInside)
     }
 }
