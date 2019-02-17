@@ -1,4 +1,8 @@
-# <img src = "rsslogo.png" height=70> RSSReader - приложение для чтения RSS
+# <img src="rsslogo.png" height=70> RSSReader - приложение для чтения RSS
+
+Приложение реализовано с использованием архитектуры Flux 
+<img src="flux.png" width=200>
+(c помощью библиотеки ReSwif, подробно о Flux - например, <a href=https://medium.com/@rjchatfield/flux-in-swift-7c8f416d6dbe>тут</a>)
 
 #### Реализовать простое приложение реализующие функцию просмотра новостей с пользовательским предпочтениями.
 
