@@ -12,6 +12,7 @@ import SafariServices
 
 struct TableState {
     var selectedItem: RSSEntry?
+    var bookmarks: Set<RSSEntry> = []
     
     var detailsViewController: SFSafariViewController? {
         guard
@@ -30,6 +31,7 @@ struct TableState {
 
 enum TableActions: Action {
     case selectedItem(RSSEntry)
+    case bookmarkedItem(RSSEntry)
     case detailsShown
 }
 
@@ -41,6 +43,9 @@ func tableReducer(_ action: Action, _ state: AppState) -> AppState {
     switch action {
     case .selectedItem(let item)    : state.table.selectedItem = item
     case .detailsShown              : state.table.selectedItem = nil
+    case .bookmarkedItem(let item)  :
+        state.login.loggedUser?.handleBookmark(item)
+        state.table.bookmarks.handleBookmark(item)
     }
     return state
 }

@@ -23,7 +23,7 @@ class LoadingAdapter<Loader: LoaderProtocol>: Adapter where Loader.ItemType == T
         return control
     }()
     
-    init(_ tableView: UITableView, loader: Loader, completion: @escaping (TypeProtocol) -> Void) {
+    init(_ tableView: UITableView, loader: Loader, completion: @escaping (TypeProtocol) -> Bool) {
         super.init(tableView, completion: completion)
         self.provider = Provider(adapter: self, loader: loader)
         self.tableView.rowHeight = UITableView.automaticDimension

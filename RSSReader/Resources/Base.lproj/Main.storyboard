@@ -182,7 +182,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SC7-TY-ALf"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Bookmarks" image="bookmark" id="DrB-t9-vUI"/>
+                    <tabBarItem key="tabBarItem" title="Bookmarks" image="bookmark" id="DrB-t9-vUI">
+                        <color key="badgeColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="vop-lv-GuY" id="F7Y-XC-gTH"/>
                     </connections>
@@ -221,6 +223,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="uqf-Dl-JLC"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="tGe-yj-xgA">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.12984204290000001" green="0.31479621260000001" blue="0.44326625930000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

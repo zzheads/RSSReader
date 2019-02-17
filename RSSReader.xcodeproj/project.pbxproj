@@ -355,6 +355,7 @@
 		A6E731B6221610E400F9A136 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E731B5221610E400F9A136 /* Route.swift */; };
 		A6F9668E221950EB0006477C /* RSSEntry +.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9668D221950EB0006477C /* RSSEntry +.swift */; };
 		A6F96690221959510006477C /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F9668F221959510006477C /* UserDefaults.swift */; };
+		A6F96692221976CE0006477C /* User +.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F96691221976CE0006477C /* User +.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -710,6 +711,7 @@
 		A6E731B5221610E400F9A136 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		A6F9668D221950EB0006477C /* RSSEntry +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RSSEntry +.swift"; sourceTree = "<group>"; };
 		A6F9668F221959510006477C /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		A6F96691221976CE0006477C /* User +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User +.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -793,9 +795,9 @@
 		A616807122143271008A74C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A6B592FB2218148C00D3585B /* RSSEntry */,
 				A6B592F822180E2300D3585B /* CoreStack */,
 				A6E731AC22158C5700F9A136 /* User */,
+				A6B592FB2218148C00D3585B /* RSSEntry */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -879,8 +881,8 @@
 		A6B592C52217C01000D3585B /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				A6B595612218857C00D3585B /* Bookmarks */,
 				A6B592CF2217D77800D3585B /* RootReducer.swift */,
+				A6B595612218857C00D3585B /* Bookmarks */,
 				A6B592D12217D7D500D3585B /* Details */,
 				A6B592CC2217D70700D3585B /* Table */,
 				A6B592C92217D54300D3585B /* Register */,
@@ -1277,6 +1279,7 @@
 		A6E731AC22158C5700F9A136 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				A6F96691221976CE0006477C /* User +.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1768,6 +1771,7 @@
 				A6B592CB2217D57100D3585B /* RegisterReducer.swift in Sources */,
 				A616804D2214112B008A74C8 /* AppDelegate.swift in Sources */,
 				A616808422144226008A74C8 /* Comparable +.swift in Sources */,
+				A6F96692221976CE0006477C /* User +.swift in Sources */,
 				A6B592F7221808F900D3585B /* coredata.xcdatamodeld in Sources */,
 				A616808122143271008A74C8 /* LoadingAdapter.swift in Sources */,
 				A6B5956922188A7B00D3585B /* LoginView.swift in Sources */,

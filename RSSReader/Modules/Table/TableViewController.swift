@@ -12,16 +12,17 @@ import ReSwift
 
 class TableViewController: BaseViewController, StoreSubscriber {
     @IBOutlet weak var tableView: UITableView!
+    var loggedUser: User?
     let loader = RSSLoader(url: URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!)
     lazy var adapter: LoadingAdapter<RSSLoader> = {
-        let adapter = LoadingAdapter<RSSLoader>(self.tableView, loader: self.loader) { item in print("Long tap detected: \(item) ")}
+        let adapter = LoadingAdapter<RSSLoader>(self.tableView, loader: self.loader) { item in return false }
         adapter.selectDelegate = self.showDetails
         return adapter
     }()
     
     let coreDataLoader = CoreDataLoader()
     lazy var coreDataAdapter: LoadingAdapter<CoreDataLoader> = {
-        let adapter = LoadingAdapter<CoreDataLoader>(self.tableView, loader: self.coreDataLoader) { item in print("Long tap detected: \(item) ")}
+        let adapter = LoadingAdapter<CoreDataLoader>(self.tableView, loader: self.coreDataLoader) { item in return false }
         adapter.selectDelegate = self.showDetails
         return adapter
     }()
@@ -71,22 +72,18 @@ class TableViewController: BaseViewController, StoreSubscriber {
         self.navigationController?.popViewController(animated: true)
     }
     
-    private func bookmark(_ entry: RSSEntry, for user: User) {
-        user.addToBookmarks(entry)
-        try! CoreStack.shared.persistentContainer.viewContext.save()
-        print("Entry \(entry.title) bookmarked")
-    }
-    
     func newState(state: AppState) {
         if let detailsViewController = state.table.detailsViewController {
             self.present(detailsViewController, animated: true) { store.dispatch(TableActions.detailsShown) }
         }
-        if let loggedUser = state.login.loggedUser {
-            self.adapter.completion = { entry in
-                guard let entry = entry as? RSSEntry else {
-                    return
+        if self.loggedUser != state.login.loggedUser {
+            self.loggedUser = state.login.loggedUser
+            self.adapter.completion = { item in
+                guard let entry = item as? RSSEntry, let loggedUser = self.loggedUser else {
+                    return false
                 }
-                self.bookmark(entry, for: loggedUser)
+                store.dispatch(TableActions.bookmarkedItem(entry))
+                return loggedUser.bookmarkState(entry)
             }
         }
     }

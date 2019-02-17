@@ -13,7 +13,7 @@ protocol ConfigurableCell {
     static var reuseIdentifier: String { get }
     static var cellNib: UINib { get }
     static var cellHeight: CGFloat { get }
-    func configure(with item: T, completion: @escaping (T) -> Void)
+    func configure(with item: T, completion: @escaping (T) -> Bool)
 }
 
 extension ConfigurableCell {

@@ -12,9 +12,10 @@ import FeedKit
 final class RSSEntryCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     private var entry: RSSEntry?
-    private var completion: ((RSSEntry) -> Void)?
+    private var completion: ((RSSEntry) -> Bool)?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,15 +29,20 @@ final class RSSEntryCell: UITableViewCell {
     
     private func setup() {
         self.selectionStyle = .none
-        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(longDidPressed(_:)))
-        self.addGestureRecognizer(recognizer)
     }
     
-    @objc private func longDidPressed(_ sender: UILongPressGestureRecognizer) {
+    @objc private func favoriteButtonPressed(_ sender: UIButton) {
         guard let entry = self.entry else {
             return
         }
-        self.completion?(entry)
+        let newStateButton = self.completion?(entry) ?? false
+        self.setFavoriteButton(newStateButton)
+    }
+    
+    private func setFavoriteButton(_ isFavorite: Bool) {
+        let image = self.favoriteButton.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        self.favoriteButton.setImage(image, for: .normal)
+        self.favoriteButton.tintColor = isFavorite ? .white : .black
     }
 }
 
@@ -45,10 +51,15 @@ extension RSSEntryCell: ConfigurableCell {
         return 165
     }
     
-    func configure(with item: RSSEntry, completion: @escaping (RSSEntry) -> Void) {
+    func configure(with item: RSSEntry, completion: @escaping (RSSEntry) -> Bool) {
         self.entry = item
         self.completion = completion
         self.titleLabel.text = item.title
         self.contentLabel.text = item.content
+
+        _ = completion(item)
+        let startState = completion(item)
+        self.setFavoriteButton(startState)
+        self.favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed(_:)), for: .touchUpInside)
     }
 }

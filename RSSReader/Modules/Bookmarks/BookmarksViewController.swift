@@ -12,11 +12,13 @@ import PromiseKit
 
 class BookmarksViewController: BaseViewController, StoreSubscriber {
     @IBOutlet weak var tableView: UITableView!
-    var loggedUser: User!
-    var adapter: LoadingAdapter<BookmarksLoader>!
+    var bookmarks: [RSSEntry] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.register(RSSEntryCell.cellNib, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         store.subscribe(self)
     }
     
@@ -24,13 +26,26 @@ class BookmarksViewController: BaseViewController, StoreSubscriber {
         guard let loggedUser = state.login.loggedUser else {
             return
         }
-        self.loggedUser = loggedUser
-        let loader = BookmarksLoader(loggedUser: loggedUser)
-        let adapter = LoadingAdapter<BookmarksLoader>(self.tableView, loader: loader) { entry in print("Tapped: \(entry)") }
-        self.tableView.dataSource = adapter
-        self.tableView.delegate = adapter
-        adapter.fetchMore()
+        let set = loggedUser.bookmarks as? Set<RSSEntry> ?? []
+        self.bookmarks = Array(set)
         self.tableView.reloadData()
+        self.tabBarItem.badgeValue = "\(self.bookmarks.count)"
+    }
+}
+
+extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.bookmarks.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: RSSEntryCell.reuseIdentifier, for: indexPath) as! RSSEntryCell
+        cell.configure(with: self.bookmarks[indexPath.row]) { entry in return true }
+        return cell
     }
 }
 

@@ -45,3 +45,14 @@ extension RSSEntry: TypeProtocol {
         return Row<RSSEntry, RSSEntryCell>(self)
     }
 }
+
+extension Set where Element == RSSEntry {
+    mutating func handleBookmark(_ entry: Element) -> Bool {
+        if self.contains(entry) {
+            self.remove(entry)
+        } else {
+            self.insert(entry)
+        }
+        return self.contains(entry)
+    }
+}
