@@ -24,5 +24,6 @@ class TabBarController: UITabBarController, StoreSubscriber {
 
     func newState(state: AppState) {
         self.bookmarksViewController?.tabBarItem.isEnabled = state.login.isLogged
+        self.bookmarksViewController?.tabBarItem.badgeValue = "\(state.login.loggedUser?.bookmarks?.count ?? 0)"
     }
 }

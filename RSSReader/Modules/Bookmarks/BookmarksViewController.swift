@@ -16,7 +16,7 @@ class BookmarksViewController: BaseViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(RSSEntryCell.cellNib, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
+        self.tableView.register(RSSEntryCell.nibName, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         store.subscribe(self)
@@ -44,7 +44,7 @@ extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RSSEntryCell.reuseIdentifier, for: indexPath) as! RSSEntryCell
-        cell.configure(with: self.bookmarks[indexPath.row]) { entry in return true }
+        cell.configure(with: self.bookmarks[indexPath.row], isBookmarked: true) { entry in return true }
         return cell
     }
 }
