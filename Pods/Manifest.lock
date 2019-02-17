@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (5.0.0-beta.2)
   - FeedKit (8.0.0)
   - PromiseKit (6.8.3):
     - PromiseKit/CorePromise (= 6.8.3)
@@ -11,35 +10,23 @@ PODS:
   - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
   - ReSwift (4.0.1)
-  - ReSwiftRouter (0.6.0):
-    - ReSwift (~> 4.0.0)
-  - SnapKit (4.2.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 5.0.0-beta.2)
   - FeedKit (~> 8.0)
   - PromiseKit (~> 6.8)
   - ReSwift
-  - ReSwiftRouter
-  - SnapKit (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - FeedKit
     - PromiseKit
     - ReSwift
-    - ReSwiftRouter
-    - SnapKit
 
 SPEC CHECKSUMS:
-  Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
   FeedKit: 4a78f07adf7f0a224b904014678f1de82a7ffc21
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   ReSwift: f4012c613e13da7398827fe5aebdb938eaed40a3
-  ReSwiftRouter: 81f41b37a5dd1c88e1d3d10a660ff2dcc939ba7c
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 3e4fcfbbdbb6e940f602f8de52079556efe58b97
+PODFILE CHECKSUM: 6136eb0d25306d3129efee5125563d19c0926ce1
 
 COCOAPODS: 1.6.0
