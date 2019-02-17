@@ -16,7 +16,7 @@ class BookmarksViewController: BaseViewController, StoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(RSSEntryCell.cellNib, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
+        self.tableView.register(RSSEntryCell.nibName, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         store.subscribe(self)

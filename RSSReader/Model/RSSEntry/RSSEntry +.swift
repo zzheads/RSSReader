@@ -20,32 +20,6 @@ extension RSSEntry {
     }
 }
 
-extension RSSEntry: TypeProtocol {
-    var sectionHeader: String {
-        guard let pubDate = pubDate else {
-            return ""
-        }
-        return Date.formatter.string(from: pubDate)
-    }
-    
-    var sectionId: String {
-        let formatter = Date.formatter
-        formatter.dateFormat = "yyMMdd"
-        guard let pubDate = pubDate else {
-            return ""
-        }
-        return formatter.string(from: pubDate)
-    }
-    
-    var rowId: String {
-        return self.sectionId
-    }
-    
-    var row: RowProtocol {
-        return Row<RSSEntry, RSSEntryCell>(self)
-    }
-}
-
 extension Set where Element == RSSEntry {
     mutating func handleBookmark(_ entry: Element) -> Bool {
         if self.contains(entry) {

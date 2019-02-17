@@ -9,67 +9,46 @@
 import UIKit
 import FeedKit
 import ReSwift
+import CoreData
 
 class TableViewController: BaseViewController, StoreSubscriber {
     @IBOutlet weak var tableView: UITableView!
-    var loggedUser: User?
-    let loader = RSSLoader(url: URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!)
-    lazy var adapter: LoadingAdapter<RSSLoader> = {
-        let adapter = LoadingAdapter<RSSLoader>(self.tableView, loader: self.loader) { item in return false }
-        adapter.selectDelegate = self.showDetails
-        return adapter
-    }()
+    var loggedUser: User? {
+        didSet {
+            self.rssLoaderDataSource.loggedUser = self.loggedUser
+            self.fetchedDataSource.loggedUser = self.loggedUser
+        }
+    }
+    var updateBookmarksCount: ((Int) -> Void)?
     
-    let coreDataLoader = CoreDataLoader()
-    lazy var coreDataAdapter: LoadingAdapter<CoreDataLoader> = {
-        let adapter = LoadingAdapter<CoreDataLoader>(self.tableView, loader: self.coreDataLoader) { item in return false }
-        adapter.selectDelegate = self.showDetails
-        return adapter
-    }()
+    var rssLoaderDataSource = RSSLoaderDataSource()
+    var fetchedDataSource = FetchedResultsDataSource()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loader.getFeed().done { rssFeed in
-            self.navigationItem.title = rssFeed.description
-            if let count = rssFeed.items?.count {
-                self.tabBarItem.badgeValue = "\(count)"
-            }
-        }.cauterize()
-        self.adapter.fetch()
-            .done { entries in
-                guard let entries = entries as? [RSSEntry] else {
-                    return
-                }
-                print(entries)
-            }
-            .catch { [weak self] error in
-                guard let sSelf = self else {
-                    return
-                }
-                // Connection problem possible
-                sSelf.tableView.dataSource = sSelf.coreDataAdapter
-                sSelf.tableView.delegate = sSelf.coreDataAdapter
-                
-                sSelf.coreDataAdapter.fetchMore()
-            }
-        
-        self.navigationItem.leftBarButtonItem?.title = "Logout"
-        self.navigationItem.leftBarButtonItem?.action = #selector(leftButtonPressed(_:))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         store.subscribe(self)
+        self.tableView.register(RSSEntryCell.nibName, forCellReuseIdentifier: RSSEntryCell.reuseIdentifier)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        store.unsubscribe(self)
-    }
-    
-    @objc func leftButtonPressed(_ sender: UIBarButtonItem) {
-        store.dispatch(LoginActions.logout)
-        self.navigationController?.popViewController(animated: true)
+    private func fetch() {
+        self.tableView.dataSource = self.rssLoaderDataSource
+        self.tableView.delegate = self.rssLoaderDataSource
+        self.rssLoaderDataSource.performFetch()
+            .done { entries in
+                self.tabBarItem.badgeValue = "\(entries.count)"
+                self.tableView.reloadData()
+            }
+            .catch { internetError in
+                // Could be internet connection problems - try get entries from database
+                do {
+                    self.tableView.dataSource = self.fetchedDataSource
+                    self.tableView.delegate = self.fetchedDataSource
+                    try self.fetchedDataSource.performFetch()
+                    self.tableView.reloadData()
+                } catch {
+                    print(error)
+                }
+            }
     }
     
     func newState(state: AppState) {
@@ -78,22 +57,10 @@ class TableViewController: BaseViewController, StoreSubscriber {
         }
         if self.loggedUser != state.login.loggedUser {
             self.loggedUser = state.login.loggedUser
-            self.adapter.completion = { item in
-                guard let entry = item as? RSSEntry, let loggedUser = self.loggedUser else {
-                    return false
-                }
-                store.dispatch(TableActions.bookmarkedItem(entry))
-                return loggedUser.bookmarkState(entry)
-            }
+            self.fetch()
         }
-    }
-
-    func showDetails(_ item: TypeProtocol) {
-        guard let item = item as? RSSEntry else {
-            return
-        }
-        store.dispatch(TableActions.selectedItem(item))
     }
 }
+
 
 
